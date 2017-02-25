@@ -8,5 +8,75 @@
     <version>1.0-SNAPSHOT</version>
     <packaging>pom</packaging>
 
+    <!--  聚合，用来集中管理各模块（注意这不叫继承！！） -->
+    <modules>
+        <module>discovery</module>
+    </modules>
+
+    <!--  *********************由此往下的所有内容均会被子模块继承****************************** -->
+
+    <!--
+          作用：引入SpringCloud常用包的依赖时可以省去<version>标签，用于统一依赖的版本
+          使用spring-cloud-starter-parent代替spring-boot-starter-parent，
+          不仅具备spring-boot-starter-parent的同样功能，还附加了SpringCloud的依赖
+          注：这种写法与<dependencyManagement>等同，但只适用于<parent>没有被占用的情况，
+          所以最好写在root模块中，由其子模块继承
+          附<dependencyManagement>写法：
+            <dependencyManagement>
+              <dependencies>
+                <dependency>
+                  <groupId>org.springframework.cloud</groupId>
+                  <artifactId>spring-cloud-dependencies</artifactId>
+                  <version>Brixton.RELEASE</version>
+                  <type>pom</type>
+                  <scope>import</scope>
+                </dependency>
+              </dependencies>
+            </dependencyManagement>
+    -->
+    <parent>
+        <groupId>org.springframework.cloud</groupId>
+        <artifactId>spring-cloud-starter-parent</artifactId>
+        <version>Brixton.RELEASE</version>
+    </parent>
+
+    <!--  属性配置 -->
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+        <java.version>1.8</java.version>
+    </properties>
+
+    <!--  依赖 -->
+    <dependencies>
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-actuator</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-test</artifactId>
+            <scope>test</scope>
+        </dependency>
+    </dependencies>
+
+    <!--  插件 -->
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+            </plugin>
+        </plugins>
+    </build>
+
 
 </project>
