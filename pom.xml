@@ -13,6 +13,7 @@
         <module>discovery</module>
         <module>config</module>
         <module>gateway</module>
+        <module>user-service</module>
     </modules>
 
     <!--  *********************由此往下的所有内容均会被子模块继承****************************** -->

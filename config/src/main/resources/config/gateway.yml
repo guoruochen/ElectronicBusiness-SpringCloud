@@ -16,5 +16,19 @@ zuul:
     connect-timeout-millis: 20000
     socket-timeout-millis: 20000
 
+  routes:
+    user-service:
+        path: /user/**
+        url: http://localhost:5000
+        stripPrefix: false
+        sensitiveHeaders:
+
+eureka:
+  instance:
+    prefer-ip-address: true
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8761/eureka/
+
 server:
   port: 4000
