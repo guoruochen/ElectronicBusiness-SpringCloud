@@ -11,6 +11,8 @@
 
     <!--  配置mapper映射文件 -->
     <mappers>
-        <mapper resource="com/grc/user/mapper/UserMapper.xml"/>
+        <!--<package name="com.grc.user.mapper"/>-->
+        <!--<mapper resource="com/grc/user/mapper/UserMapper.xml"/>-->
+        <mapper resource="com.grc.user.mapper/UserMapper.xml"/>
     </mappers>
 </configuration>
