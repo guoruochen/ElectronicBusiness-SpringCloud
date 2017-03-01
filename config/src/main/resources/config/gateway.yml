@@ -23,6 +23,12 @@ zuul:
         stripPrefix: false
         sensitiveHeaders:
 
+    item-service:
+        path: /item/**
+        url: http://localhost:5001
+        stripPrefix: false
+        sensitiveHeaders:
+
 eureka:
   instance:
     prefer-ip-address: true
