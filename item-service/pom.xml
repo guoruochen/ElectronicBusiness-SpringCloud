@@ -41,6 +41,12 @@
             <artifactId>mybatis-spring-boot-starter</artifactId>
             <version>${mybatis.starter.version}</version>
         </dependency>
+        <!--  内部依赖 -->
+        <dependency>
+            <groupId>com.grc</groupId>
+            <artifactId>common</artifactId>
+            <version>${project.version}</version>
+        </dependency>
     </dependencies>
 
 </project>
