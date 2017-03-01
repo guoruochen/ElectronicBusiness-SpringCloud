@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.grc.user.mapper.UserMapper">
-    <select id="test" resultType="java.util.Map">
+    <select id="test" resultType="com.grc.user.domain.User">
         SELECT * FROM tb_user
     </select>
 </mapper>

@@ -1,5 +1,7 @@
 package com.grc.user.service;
 
+import com.grc.user.domain.User;
+
 import java.util.List;
 import java.util.Map;
 
@@ -8,5 +10,5 @@ import java.util.Map;
  * @create 2017-02-28 15:12
  */
 public interface UserService {
-    List<Map<String,Object>> test();
+    List<User> test();
 }

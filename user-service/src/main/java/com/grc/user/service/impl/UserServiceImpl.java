@@ -1,5 +1,6 @@
 package com.grc.user.service.impl;
 
+import com.grc.user.domain.User;
 import com.grc.user.mapper.UserMapper;
 import com.grc.user.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,7 +22,7 @@ public class UserServiceImpl implements UserService{
     UserMapper userMapper;
 
     @Override
-    public List<Map<String, Object>> test() {
+    public List<User> test() {
         return userMapper.test();
     }
 }
