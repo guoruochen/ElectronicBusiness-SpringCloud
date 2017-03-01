@@ -17,21 +17,21 @@ public class BaseController {
     static final int DEFAULT_PAGE_SIZE = 10;
 
 
-    Map<String, Object> okResponse(Object o) {
+    public Map<String, Object> okResponse(Object o) {
         Map<String, Object> jsonMap = new HashMap<>();
         jsonMap.put(RESPONSE_KEY_CODE, 200);
         jsonMap.put(RESPONSE_KEY_RESULT, o);
         return jsonMap;
     }
 
-    Map<String, Object> badResponse(String message) {
+    public Map<String, Object> badResponse(String message) {
         Map<String, Object> jsonMap = new HashMap<>();
         jsonMap.put(RESPONSE_KEY_CODE, 500);
         jsonMap.put(RESPONSE_KEY_MESSAGE, message);
         return jsonMap;
     }
 
-    String timeStamp() {
+    public String timeStamp() {
         return LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyyMMddHHmmssSSS"));
     }
 
