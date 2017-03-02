@@ -1,5 +1,7 @@
 package com.grc.item.service;
 
+import com.grc.item.domain.Item;
+
 import java.util.List;
 import java.util.Map;
 
@@ -9,5 +11,10 @@ import java.util.Map;
  */
 public interface ItemService {
 
-    List<Map<String,Object>> test();
+    /*
+    根据id查询商品
+     */
+    Item getItemById(Long itemId);
+
+
 }

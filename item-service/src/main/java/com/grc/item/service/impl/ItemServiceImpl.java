@@ -1,5 +1,6 @@
 package com.grc.item.service.impl;
 
+import com.grc.item.domain.Item;
 import com.grc.item.mapper.ItemMapper;
 import com.grc.item.service.ItemService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,8 +19,11 @@ public class ItemServiceImpl implements ItemService {
     @Autowired
     ItemMapper itemMapper;
 
+    /*
+    根据id查询商品
+     */
     @Override
-    public List<Map<String, Object>> test() {
-        return itemMapper.test();
+    public Item getItemById(Long itemId) {
+        return itemMapper.getItemById(itemId);
     }
 }

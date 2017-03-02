@@ -3,12 +3,11 @@ package com.grc.item.controller;
 import com.grc.common.BaseController;
 import com.grc.item.service.ItemService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 /**
@@ -21,8 +20,15 @@ public class ItemController extends BaseController{
     @Autowired
     ItemService itemService;
 
-    @RequestMapping(value = "/test", method = RequestMethod.GET)
-    public Map<String, Object> test() {
-        return okResponse(itemService.test());
+    /*
+    根据id查询商品
+     */
+    @RequestMapping(value = "/{itemId}", method = RequestMethod.GET)
+    public Map<String, Object> getItemById(@PathVariable Long itemId) {
+        try {
+            return okResponse(itemService.getItemById(itemId));
+        }catch (Exception e){
+            return badResponse(e.getMessage());
+        }
     }
 }

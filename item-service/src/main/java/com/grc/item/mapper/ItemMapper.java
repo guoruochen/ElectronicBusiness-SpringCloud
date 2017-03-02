@@ -1,5 +1,6 @@
 package com.grc.item.mapper;
 
+import com.grc.item.domain.Item;
 import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;
@@ -12,5 +13,8 @@ import java.util.Map;
 @Mapper
 public interface ItemMapper {
 
-    List<Map<String,Object>> test();
+    /*
+    根据id查询商品
+     */
+    Item getItemById(Long itemId);
 }
