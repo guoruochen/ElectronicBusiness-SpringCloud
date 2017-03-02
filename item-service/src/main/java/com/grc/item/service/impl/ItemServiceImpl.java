@@ -1,5 +1,6 @@
 package com.grc.item.service.impl;
 
+import com.github.pagehelper.PageHelper;
 import com.grc.item.domain.Item;
 import com.grc.item.mapper.ItemMapper;
 import com.grc.item.service.ItemService;
@@ -26,4 +27,15 @@ public class ItemServiceImpl implements ItemService {
     public Item getItemById(Long itemId) {
         return itemMapper.getItemById(itemId);
     }
+
+    /*
+    查询商品列表
+     */
+    @Override
+    public List<Item> getItemsPageable(int page, int rows) {
+        PageHelper.startPage(page, rows);//分页处理
+        return itemMapper.getItemsPageable();
+    }
+
+
 }

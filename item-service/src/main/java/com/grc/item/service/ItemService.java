@@ -11,10 +11,7 @@ import java.util.Map;
  */
 public interface ItemService {
 
-    /*
-    根据id查询商品
-     */
     Item getItemById(Long itemId);
 
-
+    List<Item> getItemsPageable(int page, int rows);
 }

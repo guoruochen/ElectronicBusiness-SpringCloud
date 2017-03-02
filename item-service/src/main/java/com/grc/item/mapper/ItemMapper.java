@@ -13,8 +13,7 @@ import java.util.Map;
 @Mapper
 public interface ItemMapper {
 
-    /*
-    根据id查询商品
-     */
     Item getItemById(Long itemId);
+
+    List<Item> getItemsPageable();
 }

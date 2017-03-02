@@ -18,21 +18,21 @@ public class BaseController {
 
 
     public Map<String, Object> okResponse(Object o) {
-        Map<String, Object> jsonMap = new HashMap<>();
+        Map<String, Object> jsonMap = new HashMap<String, Object>();
         jsonMap.put(RESPONSE_KEY_CODE, 200);
         jsonMap.put(RESPONSE_KEY_RESULT, o);
         return jsonMap;
     }
 
     public Map<String, Object> badResponse(String message) {
-        Map<String, Object> jsonMap = new HashMap<>();
+        Map<String, Object> jsonMap = new HashMap<String, Object>();
         jsonMap.put(RESPONSE_KEY_CODE, 500);
         jsonMap.put(RESPONSE_KEY_MESSAGE, message);
         return jsonMap;
     }
 
-    public String timeStamp() {
-        return LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyyMMddHHmmssSSS"));
-    }
+//    public String timeStamp() {
+//        return LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyyMMddHHmmssSSS"));
+//    }
 
 }
