@@ -4,14 +4,14 @@
 <mapper namespace="com.grc.item.mapper.ItemMapper">
 
     <!--  根据id查询商品 -->
-    <select id="getItemById" parameterType="java.lang.Long" resultType="com.grc.item.domain.Item">
+    <select id="getItemById" parameterType="java.lang.Long" resultType="item">
         SELECT id,title,sell_point AS sellPoint ,
         price,num,barcode,image,cid,status,created,updated
         FROM tb_item WHERE id = #{itemId}
     </select>
 
     <!--  查询商品列表 -->
-    <select id="getItemsPageable" resultType="com.grc.item.domain.Item">
+    <select id="getItemsPageable" resultType="item">
         SELECT id,title,sell_point AS sellPoint ,
         price,num,barcode,image,cid,status,created,updated
         FROM tb_item

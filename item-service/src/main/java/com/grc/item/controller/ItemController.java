@@ -20,7 +20,7 @@ import java.util.Map;
  * @create 2017-03-01 16:17
  */
 @RestController
-public class ItemController extends BaseController{
+public class ItemController extends BaseController {
 
     @Autowired
     ItemService itemService;
@@ -29,24 +29,16 @@ public class ItemController extends BaseController{
     根据id查询商品
      */
     @RequestMapping(value = "/{itemId}", method = RequestMethod.GET)
-    public Map<String, Object> getItemById(@PathVariable Long itemId) {
-        try {
-            return okResponse(itemService.getItemById(itemId));
-        }catch (Exception e){
-            return badResponse(e.getMessage());
-        }
+    public Item getItemById(@PathVariable Long itemId) {
+        return itemService.getItemById(itemId);
     }
 
     /*
     查询商品列表
      */
-    @RequestMapping(value = "/list",method = RequestMethod.GET)
-    public Map<String,Object> getItemsPageable(int page, int rows){
-        List<Item> list = itemService.getItemsPageable(page, rows);
-        Map<String, Object> data = new HashMap<>();
-        data.put("total",((Page)list).getTotal());//取记录总条数
-        data.put("rows",list);
-        return data;
+    @RequestMapping(value = "/list", method = RequestMethod.GET)
+    public Map<String, Object> getItemsPageable(int page, int rows) {
+        return easyUIPageable(itemService.getItemsPageable(page, rows));
     }
 
 }

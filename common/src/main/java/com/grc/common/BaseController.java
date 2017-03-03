@@ -1,7 +1,7 @@
 package com.grc.common;
 
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
+import com.github.pagehelper.Page;
+
 import java.util.HashMap;
 import java.util.Map;
 
@@ -10,29 +10,18 @@ import java.util.Map;
  * @create 2017-03-01 17:21
  */
 public class BaseController {
-    static final String RESPONSE_KEY_CODE = "code";
-    static final String RESPONSE_KEY_MESSAGE = "message";
-    static final String RESPONSE_KEY_RESULT = "result";
 
-    static final int DEFAULT_PAGE_SIZE = 10;
+    static final String RESPONSE_KEY_TOTAL = "total";
+    static final String RESPONSE_KEY_ROWS = "rows";
 
-
-    public Map<String, Object> okResponse(Object o) {
+    /*
+    用来生成符合easyUI分页处理格式的响应
+     */
+    public Map<String, Object> easyUIPageable(Object o) {
         Map<String, Object> jsonMap = new HashMap<String, Object>();
-        jsonMap.put(RESPONSE_KEY_CODE, 200);
-        jsonMap.put(RESPONSE_KEY_RESULT, o);
+        jsonMap.put(RESPONSE_KEY_TOTAL, ((Page) o).getTotal());
+        jsonMap.put(RESPONSE_KEY_ROWS, o);
         return jsonMap;
     }
-
-    public Map<String, Object> badResponse(String message) {
-        Map<String, Object> jsonMap = new HashMap<String, Object>();
-        jsonMap.put(RESPONSE_KEY_CODE, 500);
-        jsonMap.put(RESPONSE_KEY_MESSAGE, message);
-        return jsonMap;
-    }
-
-//    public String timeStamp() {
-//        return LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyyMMddHHmmssSSS"));
-//    }
 
 }
