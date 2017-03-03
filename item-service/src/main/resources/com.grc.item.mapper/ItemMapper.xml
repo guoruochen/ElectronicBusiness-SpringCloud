@@ -16,4 +16,6 @@
         price,num,barcode,image,cid,status,created,updated
         FROM tb_item
     </select>
+
+    <!--  选择商品类目 -->
 </mapper>

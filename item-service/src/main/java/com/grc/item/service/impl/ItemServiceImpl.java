@@ -37,5 +37,7 @@ public class ItemServiceImpl implements ItemService {
         return itemMapper.getItemsPageable();
     }
 
-
+    /*
+    选择商品类目
+     */
 }

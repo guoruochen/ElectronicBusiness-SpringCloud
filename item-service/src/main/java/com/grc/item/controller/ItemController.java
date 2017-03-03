@@ -41,4 +41,8 @@ public class ItemController extends BaseController {
         return easyUIPageable(itemService.getItemsPageable(page, rows));
     }
 
+    /*
+    选择商品类目
+     */
+
 }
