@@ -82,6 +82,7 @@
     <!--  插件 -->
     <build>
         <plugins>
+            <!--  springboot-maven插件 -->
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>

@@ -18,4 +18,10 @@
     </select>
 
     <!--  选择商品类目 -->
+    <select id="getItemCategroy" parameterType="java.lang.Long" resultType="itemCategory">
+        SELECT id,parent_id AS parentId,name,status,
+        sort_order AS sortOrder,is_parent AS isParent,
+        created,updated FROM tb_item_cat
+        WHERE parent_id = #{parentId}
+    </select>
 </mapper>

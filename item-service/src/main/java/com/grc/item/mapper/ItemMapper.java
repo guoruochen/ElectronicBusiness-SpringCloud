@@ -1,6 +1,7 @@
 package com.grc.item.mapper;
 
 import com.grc.item.domain.Item;
+import com.grc.item.domain.ItemCategory;
 import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;
@@ -16,4 +17,6 @@ public interface ItemMapper {
     Item getItemById(Long itemId);
 
     List<Item> getItemsPageable();
+
+    List<ItemCategory> getItemCategroy(Long parentId);
 }

@@ -2,6 +2,7 @@ package com.grc.item.service.impl;
 
 import com.github.pagehelper.PageHelper;
 import com.grc.item.domain.Item;
+import com.grc.item.domain.ItemCategory;
 import com.grc.item.mapper.ItemMapper;
 import com.grc.item.service.ItemService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -40,4 +41,8 @@ public class ItemServiceImpl implements ItemService {
     /*
     选择商品类目
      */
+    @Override
+    public List<ItemCategory> getItemCategroy(Long parentId) {
+        return itemMapper.getItemCategroy(parentId);
+    }
 }

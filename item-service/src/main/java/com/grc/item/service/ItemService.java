@@ -1,6 +1,7 @@
 package com.grc.item.service;
 
 import com.grc.item.domain.Item;
+import com.grc.item.domain.ItemCategory;
 
 import java.util.List;
 import java.util.Map;
@@ -14,4 +15,6 @@ public interface ItemService {
     Item getItemById(Long itemId);
 
     List<Item> getItemsPageable(int page, int rows);
+
+    List<ItemCategory> getItemCategroy(Long parentId);
 }

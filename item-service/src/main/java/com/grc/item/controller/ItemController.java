@@ -3,14 +3,13 @@ package com.grc.item.controller;
 import com.github.pagehelper.Page;
 import com.grc.common.BaseController;
 import com.grc.item.domain.Item;
+import com.grc.item.domain.ItemCategory;
 import com.grc.item.service.ItemService;
 import org.apache.ibatis.ognl.IntHashMap;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -38,11 +37,21 @@ public class ItemController extends BaseController {
      */
     @RequestMapping(value = "/list", method = RequestMethod.GET)
     public Map<String, Object> getItemsPageable(int page, int rows) {
-        return easyUIPageable(itemService.getItemsPageable(page, rows));
+        return easyUIDatagrid(itemService.getItemsPageable(page, rows));
     }
 
     /*
     选择商品类目
      */
+    @RequestMapping(value = "/cat/list", method = RequestMethod.POST)
+    public List<Map<String, Object>> getItemCategroy(@RequestParam(value = "id", defaultValue = "0") Long parentId) {
+        List<Map<String, Object>> ret = new ArrayList<>();
+        List<ItemCategory> list = itemService.getItemCategroy(parentId);
+        for (ItemCategory itemCategory : list) {
+            Map<String, Object> map = easyUITree(itemCategory.getId(), itemCategory.getName(), (itemCategory.getIsParent() == 1) ? "closed" : "open");
+            ret.add(map);
+        }
+        return ret;
+    }
 
 }
