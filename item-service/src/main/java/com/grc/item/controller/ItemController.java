@@ -1,16 +1,13 @@
 package com.grc.item.controller;
 
-import com.github.pagehelper.Page;
 import com.grc.common.BaseController;
 import com.grc.item.domain.Item;
 import com.grc.item.domain.ItemCategory;
 import com.grc.item.service.ItemService;
-import org.apache.ibatis.ognl.IntHashMap;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
