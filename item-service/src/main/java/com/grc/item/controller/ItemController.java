@@ -34,7 +34,11 @@ public class ItemController extends BaseController {
      */
     @RequestMapping(value = "/list", method = RequestMethod.GET)
     public Map<String, Object> getItemsPageable(int page, int rows) {
-        return easyUIDatagrid(itemService.getItemsPageable(page, rows));
+        try {
+            return easyUIDatagrid(itemService.getItemsPageable(page, rows));
+        } catch (Exception e) {
+            return badResponse(e.getMessage());
+        }
     }
 
     /*
@@ -44,11 +48,16 @@ public class ItemController extends BaseController {
     public List<Map<String, Object>> getItemCategroy(@RequestParam(value = "id", defaultValue = "0") Long parentId) {
         List<Map<String, Object>> ret = new ArrayList<>();
         List<ItemCategory> list = itemService.getItemCategroy(parentId);
-        for (ItemCategory itemCategory : list) {
-            Map<String, Object> map = easyUITree(itemCategory.getId(), itemCategory.getName(), (itemCategory.getIsParent() == 1) ? "closed" : "open");
-            ret.add(map);
+        try {
+            for (ItemCategory itemCategory : list) {
+                Map<String, Object> map = easyUITree(itemCategory.getId(), itemCategory.getName(), (itemCategory.getIsParent() == 1) ? "closed" : "open");
+                ret.add(map);
+            }
+            return ret;
+        } catch (Exception e) {
+            ret.add(badResponse(e.getMessage()));
+            return ret;
         }
-        return ret;
     }
 
 }
