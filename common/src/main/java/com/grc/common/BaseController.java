@@ -17,6 +17,8 @@ public class BaseController {
     static final String RESPONSE_KEY_ID = "id";
     static final String RESPONSE_KEY_TEXT = "text";
     static final String RESPONSE_KEY_STATE = "state";
+    static final String RESPONSE_KEY_URL = "url";
+    static final String RESPONSE_KEY_ERROR = "error";
 
     /*
     当发生异常，返回前端错误信息
@@ -48,4 +50,23 @@ public class BaseController {
         return jsonMap;
     }
 
+    /*
+    用来生成符合KindEditor文件上传插件-上传成功-的响应
+     */
+    public Map<String,Object> KESuccess(String url){
+        Map<String, Object> jsonMap = new HashMap<String, Object>();
+        jsonMap.put(RESPONSE_KEY_ERROR , 0);
+        jsonMap.put(RESPONSE_KEY_URL, url);
+        return jsonMap;
+    }
+
+    /*
+    用来生成符合KindEditor文件上传插件-上传失败-的响应
+     */
+    public Map<String,Object> KEFail(Object o){
+        Map<String, Object> jsonMap = new HashMap<String, Object>();
+        jsonMap.put(RESPONSE_KEY_ERROR , 1);
+        jsonMap.put(RESPONSE_KEY_MESSAGE, o);
+        return jsonMap;
+    }
 }
