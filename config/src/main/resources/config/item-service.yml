@@ -11,4 +11,4 @@ server:
 
 application:
   files.localpath: E:\nginx\html
-  access_base_url: http://image.taotao.com
+  access_base_url: http://localhost
