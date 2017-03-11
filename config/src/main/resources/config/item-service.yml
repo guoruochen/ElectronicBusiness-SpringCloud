@@ -8,3 +8,7 @@ eureka:
 server:
   context-path: /item
   port: 5001
+
+application:
+  files.localpath: E:\nginx\html
+  access_base_url: http://image.taotao.com
