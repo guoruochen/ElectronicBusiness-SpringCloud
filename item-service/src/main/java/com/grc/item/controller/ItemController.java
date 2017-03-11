@@ -1,6 +1,7 @@
 package com.grc.item.controller;
 
 import com.grc.common.BaseController;
+import com.grc.common.JsonUtils;
 import com.grc.item.domain.Item;
 import com.grc.item.domain.ItemCategory;
 import com.grc.item.service.ItemService;
@@ -66,13 +67,18 @@ public class ItemController extends BaseController {
     上传图片
      */
     @RequestMapping(value = "/pic/upload", method = RequestMethod.POST)
-    public Map<String, Object> upload(MultipartFile uploadFile) {
+    public String upload(MultipartFile uploadFile) {
+        Map<String,Object> map;
         try {
             //访问图片的url
             String url = itemService.upload(uploadFile);
-            return KESuccess(url);
+            map = KESuccess(url);
+            //为了保证功能的兼容性（火狐浏览器），需要把结果转换为json格式的字符串
+            String result = JsonUtils.objectToJson(map);
+            return result;
         } catch (IOException e) {
-            return KEFail("文件" + uploadFile.getOriginalFilename() + "上传fail");
+            map = KEFail("文件" + uploadFile.getOriginalFilename() + "上传失败");
+            return JsonUtils.objectToJson(map);
         }
     }
 }
