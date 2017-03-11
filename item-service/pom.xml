@@ -53,6 +53,12 @@
             <artifactId>pagehelper</artifactId>
             <version>${mybatis.page-helper.version}</version>
         </dependency>
+        <!--  上传文件组件 -->
+        <dependency>
+            <groupId>commons-fileupload</groupId>
+            <artifactId>commons-fileupload</artifactId>
+            <version>1.2.2</version>
+        </dependency>
     </dependencies>
 
 </project>
