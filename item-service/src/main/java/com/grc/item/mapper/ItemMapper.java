@@ -2,6 +2,7 @@ package com.grc.item.mapper;
 
 import com.grc.item.domain.Item;
 import com.grc.item.domain.ItemCategory;
+import com.grc.item.domain.ItemDesc;
 import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;
@@ -21,4 +22,6 @@ public interface ItemMapper {
     List<ItemCategory> getItemCategroy(Long parentId);
 
     void insertItem(Item item);
+
+    void insertItemDesc(ItemDesc itemDesc);
 }

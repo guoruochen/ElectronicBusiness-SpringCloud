@@ -30,4 +30,10 @@
         INSERT INTO tb_item (id, title, sell_point, price, num, barcode, image, cid, status, created, updated )
         VALUES (#{id}, #{title}, #{sellPoint},  #{price}, #{num}, #{barcode},#{image}, #{cid},1,now(),now())
     </insert>
+
+    <!--  新增商品描述 -->
+    <insert id="insertItemDesc" parameterType="itemDesc">
+        INSERT INTO tb_item_desc   (item_id, item_desc, created, updated )
+        VALUES (#{itemId}, #{itemDesc},now(),now())
+    </insert>
 </mapper>

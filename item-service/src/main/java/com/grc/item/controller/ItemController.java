@@ -86,11 +86,11 @@ public class ItemController extends BaseController {
     新增商品
      */
     @RequestMapping(value = "/save", method = RequestMethod.POST)
-    public Map<String, Object> insertItem(Item item) {
+    public Map<String, Object> insertItem(Item item, String desc) {
         try {
-            Long id = itemService.insertItem(item);
-            return okResponse("商品 " +id +" 新增成功");
-        }catch (Exception e){
+            Long id = itemService.insertItem(item, desc);
+            return okResponse("商品 " + id + " 新增成功");
+        } catch (Exception e) {
             return badResponse(e.getMessage());
         }
     }

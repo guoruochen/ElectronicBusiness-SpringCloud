@@ -21,5 +21,5 @@ public interface ItemService {
 
     String upload(MultipartFile uploadFile) throws IOException;
 
-    Long insertItem(Item item);
+    Long insertItem(Item item, String desc);
 }

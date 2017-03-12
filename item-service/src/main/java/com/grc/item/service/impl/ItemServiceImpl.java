@@ -4,6 +4,7 @@ import com.github.pagehelper.PageHelper;
 import com.grc.common.IDUtils;
 import com.grc.item.domain.Item;
 import com.grc.item.domain.ItemCategory;
+import com.grc.item.domain.ItemDesc;
 import com.grc.item.mapper.ItemMapper;
 import com.grc.item.service.ItemService;
 import org.apache.commons.io.FileUtils;
@@ -85,11 +86,16 @@ public class ItemServiceImpl implements ItemService {
     新增商品
      */
     @Override
-    public Long insertItem(Item item) {
+    public Long insertItem(Item item, String desc) {
         //生成商品id
         Long id = IDUtils.genItemId();
         item.setId(id);
         itemMapper.insertItem(item);
+        //创建商品描述对象
+        ItemDesc itemDesc = new ItemDesc();
+        itemDesc.setItemId(id);
+        itemDesc.setItemDesc(desc);
+        itemMapper.insertItemDesc(itemDesc);
         return id;
     }
 }
