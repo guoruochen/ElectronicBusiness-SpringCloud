@@ -11,6 +11,8 @@ import java.util.Map;
  */
 public class BaseController {
 
+    static final String RESPONSE_KEY_STATUS = "status";
+    static final String RESPONSE_KEY_RESULT = "result";
     static final String RESPONSE_KEY_MESSAGE = "message";
     static final String RESPONSE_KEY_TOTAL = "total";
     static final String RESPONSE_KEY_ROWS = "rows";
@@ -21,10 +23,21 @@ public class BaseController {
     static final String RESPONSE_KEY_ERROR = "error";
 
     /*
-    当发生异常，返回前端错误信息
+    请求成功的响应格式
+     */
+    public Map<String, Object> okResponse(Object o) {
+        Map<String, Object> jsonMap = new HashMap<String, Object>();
+        jsonMap.put(RESPONSE_KEY_STATUS,200);
+        jsonMap.put(RESPONSE_KEY_RESULT, o);
+        return jsonMap;
+    }
+
+    /*
+    请求错误的响应格式
      */
     public Map<String, Object> badResponse(Object o) {
         Map<String, Object> jsonMap = new HashMap<String, Object>();
+        jsonMap.put(RESPONSE_KEY_STATUS,500);
         jsonMap.put(RESPONSE_KEY_MESSAGE, o);
         return jsonMap;
     }
