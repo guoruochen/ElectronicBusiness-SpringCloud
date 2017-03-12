@@ -19,4 +19,6 @@ public interface ItemMapper {
     List<Item> getItemsPageable();
 
     List<ItemCategory> getItemCategroy(Long parentId);
+
+    void insertItem(Item item);
 }

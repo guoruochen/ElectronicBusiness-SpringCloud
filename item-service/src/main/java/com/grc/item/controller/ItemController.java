@@ -68,7 +68,7 @@ public class ItemController extends BaseController {
      */
     @RequestMapping(value = "/pic/upload", method = RequestMethod.POST)
     public String upload(MultipartFile uploadFile) {
-        Map<String,Object> map;
+        Map<String, Object> map;
         try {
             //访问图片的url
             String url = itemService.upload(uploadFile);
@@ -81,4 +81,18 @@ public class ItemController extends BaseController {
             return JsonUtils.objectToJson(map);
         }
     }
+
+    /*
+    新增商品
+     */
+    @RequestMapping(value = "/save", method = RequestMethod.POST)
+    public Map<String, Object> insertItem(Item item) {
+        try {
+            Long id = itemService.insertItem(item);
+            return okResponse("商品 " +id +" 新增成功");
+        }catch (Exception e){
+            return badResponse(e.getMessage());
+        }
+    }
+
 }

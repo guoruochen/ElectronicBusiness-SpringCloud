@@ -20,4 +20,6 @@ public interface ItemService {
     List<ItemCategory> getItemCategroy(Long parentId);
 
     String upload(MultipartFile uploadFile) throws IOException;
+
+    Long insertItem(Item item);
 }

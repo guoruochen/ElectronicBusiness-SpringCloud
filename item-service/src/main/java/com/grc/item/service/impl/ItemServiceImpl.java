@@ -80,4 +80,16 @@ public class ItemServiceImpl implements ItemService {
         //返回访问图片的路径
         return accessBaseUrl + relUrl;
     }
+
+    /*
+    新增商品
+     */
+    @Override
+    public Long insertItem(Item item) {
+        //生成商品id
+        Long id = IDUtils.genItemId();
+        item.setId(id);
+        itemMapper.insertItem(item);
+        return id;
+    }
 }

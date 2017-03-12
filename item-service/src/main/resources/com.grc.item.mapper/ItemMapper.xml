@@ -24,4 +24,10 @@
         created,updated FROM tb_item_cat
         WHERE parent_id = #{parentId}
     </select>
+
+    <!--  新增商品 -->
+    <insert id="insertItem" parameterType="item">
+        INSERT INTO tb_item (id, title, sell_point, price, num, barcode, image, cid, status, created, updated )
+        VALUES (#{id}, #{title}, #{sellPoint},  #{price}, #{num}, #{barcode},#{image}, #{cid},1,now(),now())
+    </insert>
 </mapper>
