@@ -24,7 +24,7 @@ public class Item {
 
     private Long cid;//所属类目
 
-    private Long status;//商品状态，1-正常，2-下架，3-删除
+    private Long status;//商品状态，1-正常，2-下架
 
     private Date created;//创建时间
 
@@ -122,8 +122,7 @@ public class Item {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (!(o instanceof Item)) return false;
-        if (!super.equals(o)) return false;
-        return true;
+        return super.equals(o);
     }
 
     @Override

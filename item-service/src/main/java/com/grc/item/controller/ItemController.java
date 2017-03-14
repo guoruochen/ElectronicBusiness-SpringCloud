@@ -95,4 +95,8 @@ public class ItemController extends BaseController {
         }
     }
 
+    /*
+    编辑商品
+     */
+
 }

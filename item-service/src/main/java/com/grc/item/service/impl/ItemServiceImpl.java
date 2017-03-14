@@ -87,7 +87,10 @@ public class ItemServiceImpl implements ItemService {
      */
     @Override
     public Long insertItem(Item item, String desc) {
-        //生成商品id
+        /*
+        * 生成商品id
+        * 不使用MySQL的自增主键
+        */
         Long id = IDUtils.genItemId();
         item.setId(id);
         itemMapper.insertItem(item);
