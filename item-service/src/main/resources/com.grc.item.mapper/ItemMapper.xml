@@ -33,7 +33,15 @@
 
     <!--  新增商品描述 -->
     <insert id="insertItemDesc" parameterType="itemDesc">
-        INSERT INTO tb_item_desc   (item_id, item_desc, created, updated )
+        INSERT INTO tb_item_desc(item_id, item_desc, created, updated )
         VALUES (#{itemId}, #{itemDesc},now(),now())
     </insert>
+
+    <!-- 查询商品规格列表 -->
+    <select id="getParamsPageable" resultType="java.util.Map">
+        SELECT param.id , param.item_cat_id AS itemCatId , cat.name AS itemCatName,
+        param.param_data AS paramData , param.created , param.updated
+        FROM tb_item_param param , tb_item_cat cat
+        WHERE param.item_cat_id = cat.id
+    </select>
 </mapper>

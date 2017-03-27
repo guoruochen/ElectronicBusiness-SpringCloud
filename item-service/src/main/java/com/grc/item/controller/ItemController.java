@@ -96,7 +96,19 @@ public class ItemController extends BaseController {
     }
 
     /*
-    编辑商品
+    查询商品规格参数列表
+     */
+    @RequestMapping(value = "/param/list", method = RequestMethod.GET)
+    public Map<String, Object> getParamsPageable(int page, int rows) {
+        try {
+            return easyUIDatagrid(itemService.getParamsPageable(page, rows));
+        } catch (Exception e) {
+            return badResponse(e.getMessage());
+        }
+    }
+
+    /*
+    删除规格参数
      */
 
 }

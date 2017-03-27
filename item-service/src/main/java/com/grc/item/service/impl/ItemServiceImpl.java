@@ -18,6 +18,7 @@ import java.io.File;
 import java.io.IOException;
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
 
 /**
  * @author 郭若辰
@@ -100,5 +101,14 @@ public class ItemServiceImpl implements ItemService {
         itemDesc.setItemDesc(desc);
         itemMapper.insertItemDesc(itemDesc);
         return id;
+    }
+
+    /*
+    查询商品规格参数列表
+     */
+    @Override
+    public List<Map<String, Object>> getParamsPageable(int page, int rows) {
+        PageHelper.startPage(page,rows);
+        return itemMapper.getParamsPageable();
     }
 }

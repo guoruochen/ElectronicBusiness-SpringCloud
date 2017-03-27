@@ -6,6 +6,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
 import java.util.List;
+import java.util.Map;
 
 /**
  * @author 郭若辰
@@ -22,4 +23,6 @@ public interface ItemService {
     String upload(MultipartFile uploadFile) throws IOException;
 
     Long insertItem(Item item, String desc);
+
+    List<Map<String, Object>> getParamsPageable(int page,int rows);
 }
