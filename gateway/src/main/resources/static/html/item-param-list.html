@@ -1,4 +1,6 @@
-<table class="easyui-datagrid" id="itemParamList" title="规格参数模板列表"
+<!--  easyUI组件datagrid -->
+<!--  数据选项：多选、可折叠、分页、url:/item/param/list、请求方式GET、每页记录数30、工具栏itemParamListToolbar -->
+<table class="easyui-datagrid" id="itemParamList" title="规格模板列表"
        data-options="singleSelect:false,collapsible:true,pagination:true,url:'/item/param/list',method:'get',pageSize:30,toolbar:itemParamListToolbar">
     <thead>
         <tr>
@@ -14,7 +16,7 @@
 </table>
 <script>
 
-    <!--  只显示规格组的名称，并用逗号隔开; -->
+    //只显示规格组名称，并用逗号隔开
 	function formatItemParamData(value , index){
 		var json = JSON.parse(value);
 		var array = [];
@@ -24,7 +26,7 @@
 		return array.join(",");
 	}
 
-	<!--  获取用户选中的规格参数的id -->
+	//获取用户选中的规格参数的id
     function getSelectionsIds(){
     	var itemList = $("#itemParamList");
     	var sels = itemList.datagrid("getSelections");
@@ -35,11 +37,13 @@
     	ids = ids.join(",");
     	return ids;
     }
-    
+
+    //规格参数列表的工具栏
     var itemParamListToolbar = [{
         text:'新增',
         iconCls:'icon-add',
         handler:function(){
+            //新开窗口，渲染item_param-add.html
         	TAOTAO.createWindow({
         		url : "/item-param-add",
         	});
@@ -54,6 +58,7 @@
         text:'删除',
         iconCls:'icon-cancel',
         handler:function(){
+            //获取用户选中的id
         	var ids = getSelectionsIds();
         	if(ids.length == 0){
         		$.messager.alert('提示','未选中商品规格!');
