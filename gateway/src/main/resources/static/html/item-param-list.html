@@ -26,7 +26,7 @@
 		return array.join(",");
 	}
 
-	//获取用户选中的规格参数的id
+	//获取用户选中的规格参数的id，并用逗号隔开
     function getSelectionsIds(){
     	var itemList = $("#itemParamList");
     	var sels = itemList.datagrid("getSelections");
@@ -45,7 +45,7 @@
         handler:function(){
             //新开窗口，渲染item_param-add.html
         	TAOTAO.createWindow({
-        		url : "/item-param-add",
+        		url : "/item-param-add"
         	});
         }
     },{
@@ -67,9 +67,10 @@
         	$.messager.confirm('确认','确定删除ID为 '+ids+' 的商品规格吗？',function(r){
         	    if (r){
         	    	var params = {"ids":ids};
+        	    	//发送ajax请求，删除选中的规格参数模板，请求参数为多个id
                 	$.post("/item/param/delete",params, function(data){
             			if(data.status == 200){
-            				$.messager.alert('提示','删除商品规格成功!',undefined,function(){
+            				$.messager.alert('提示',data.result,undefined,function(){
             					$("#itemParamList").datagrid("reload");
             				});
             			}

@@ -26,4 +26,6 @@ public interface ItemMapper {
     void insertItemDesc(ItemDesc itemDesc);
 
     List<Map<String, Object>> getParamsPageable();
+
+    void deleteParams(Long id);
 }

@@ -104,11 +104,21 @@ public class ItemServiceImpl implements ItemService {
     }
 
     /*
-    查询商品规格参数列表
+    查询商品规格参数模板列表
      */
     @Override
     public List<Map<String, Object>> getParamsPageable(int page, int rows) {
-        PageHelper.startPage(page,rows);
+        PageHelper.startPage(page, rows);
         return itemMapper.getParamsPageable();
+    }
+
+    /*
+    删除规格参数模板
+     */
+    @Override
+    public void deleteParams(List<Long> ids) {
+        for (Long id : ids) {
+            itemMapper.deleteParams(id);
+        }
     }
 }

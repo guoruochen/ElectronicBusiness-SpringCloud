@@ -25,4 +25,6 @@ public interface ItemService {
     Long insertItem(Item item, String desc);
 
     List<Map<String, Object>> getParamsPageable(int page,int rows);
+
+    void deleteParams(List<Long> ids);
 }

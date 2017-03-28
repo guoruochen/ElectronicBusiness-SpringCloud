@@ -74,8 +74,7 @@ public class ItemController extends BaseController {
             String url = itemService.upload(uploadFile);
             map = KESuccess(url);
             //为了保证功能的兼容性（火狐浏览器），需要把结果转换为json格式的字符串
-            String result = JsonUtils.objectToJson(map);
-            return result;
+            return JsonUtils.objectToJson(map);
         } catch (IOException e) {
             map = KEFail("文件" + uploadFile.getOriginalFilename() + "上传失败");
             return JsonUtils.objectToJson(map);
@@ -96,7 +95,7 @@ public class ItemController extends BaseController {
     }
 
     /*
-    查询商品规格参数列表
+    查询商品规格参数模板列表
      */
     @RequestMapping(value = "/param/list", method = RequestMethod.GET)
     public Map<String, Object> getParamsPageable(int page, int rows) {
@@ -108,7 +107,20 @@ public class ItemController extends BaseController {
     }
 
     /*
-    删除规格参数
+    删除规格参数模板
      */
-
+    @RequestMapping(value = "/param/delete", method = RequestMethod.POST)
+    public Map<String, Object> deleteParams(String ids) {
+        List<Long> idList = new ArrayList<>();
+        String[] idArray = ids.split(",");
+        for (String s : idArray) {
+            idList.add(Long.parseLong(s));
+        }
+        try {
+            itemService.deleteParams(idList);
+            return okResponse("删除成功");
+        } catch (Exception e) {
+            return badResponse(e.getMessage());
+        }
+    }
 }
