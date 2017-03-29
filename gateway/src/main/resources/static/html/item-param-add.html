@@ -105,7 +105,6 @@
                 }
             });
             //发ajax请求存储编辑好的规格模板，参数为cid和paramData
-            //其中cid在url中，paramData被转换为了json字符串
             var url = "/item/param/save";
             var param = {"paramData": JSON.stringify(params), "cid": $("#itemParamAddTable [name=cid]").val()};
             $.post(url, param, function (data) {

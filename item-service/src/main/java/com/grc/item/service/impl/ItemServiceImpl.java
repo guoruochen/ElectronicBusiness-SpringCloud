@@ -133,6 +133,14 @@ public class ItemServiceImpl implements ItemService {
     }
 
     /*
+    获取规格模板
+     */
+    @Override
+    public String getExistParam(Long catId) {
+        return itemMapper.getExistParam(catId);
+    }
+
+    /*
     新增商品类目的规格模板
      */
     @Override

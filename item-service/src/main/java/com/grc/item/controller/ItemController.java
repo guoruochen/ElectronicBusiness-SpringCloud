@@ -127,14 +127,20 @@ public class ItemController extends BaseController {
     }
 
     /*
-    判断选择的类目是否已经添加过规格模板
+    判断选择的类目是否已经添加过规格模板，如果已经添加过，就获取规格模板
      */
     @RequestMapping(value = "/param/query/itemcatid/{catId}", method = RequestMethod.GET)
     public Map<String, Object> queryItemCatId(@PathVariable Long catId) {
         Long count = itemService.queryItemCatId(catId);
         if (count != 0) {
             try {
-                return okResponse("该类目已有规格模板，不能重复添加！");
+                Map<String, Object> map = new HashMap<>();
+                Map<String, Object> data = new HashMap<>();
+                data.put("paramData",itemService.getExistParam(catId));
+                map.put("status", 200);
+                map.put("data", data);
+                map.put("result", "该类目已有规格模板，不能重复添加！");
+                return map;
             } catch (Exception e) {
                 return badResponse(e.getMessage());
             }
@@ -152,14 +158,14 @@ public class ItemController extends BaseController {
     public Map<String, Object> insertParam(ItemParam itemParam) {
         try {
             itemService.insertParam(itemParam);
-            return okResponse("类目 " + itemParam.getCid() + " 的规格模板添加成功！");
+            return okResponse("规格模板添加成功！");
         } catch (Exception e) {
             return badResponse(e.getMessage());
         }
     }
 
     /*
-    编辑商品类目的规格模板
+    获取某类目的规格模板
      */
 
 }

@@ -55,6 +55,11 @@
         SELECT COUNT(*) FROM tb_item_param WHERE item_cat_id = #{catId}
     </select>
 
+    <!--  获取规格模板 -->
+    <select id="getExistParam" parameterType="java.lang.Long" resultType="java.lang.String">
+        SELECT param_data AS paramData FROM tb_item_param WHERE item_cat_id = #{catId}
+    </select>
+
     <!--  新增商品类目的规格模板 -->
     <insert id="insertParam" parameterType="itemParam">
         INSERT INTO tb_item_param(item_cat_id, param_data, created, updated )

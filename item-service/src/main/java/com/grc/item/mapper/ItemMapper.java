@@ -32,5 +32,7 @@ public interface ItemMapper {
 
     Long queryItemCatId(Long catId);
 
+    String getExistParam(Long catId);
+
     void insertParam(ItemParam itemParam);
 }

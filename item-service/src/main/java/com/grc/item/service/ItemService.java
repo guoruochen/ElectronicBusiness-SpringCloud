@@ -31,5 +31,7 @@ public interface ItemService {
 
     Long queryItemCatId(Long catId);
 
+    String getExistParam(Long catId);
+
     void insertParam(ItemParam itemParam);
 }

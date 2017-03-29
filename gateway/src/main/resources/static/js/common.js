@@ -189,11 +189,13 @@ var TT = TAOTAO = {
     closeCurrentWindow : function(){
     	$(".panel-tool-close").click();
     },
-    
+
+	//根据商品类目id取规格模板
     changeItemParam : function(node,formId){
     	$.getJSON("/item/param/query/itemcatid/" + node.id,function(data){
 			  if(data.status == 200 && data.data){
 				 $("#"+formId+" .params").show();
+				  //将获取到的字符串转换为json
 				 var paramData = JSON.parse(data.data.paramData);
 				 var html = "<ul>";
 				 for(var i in paramData){
@@ -211,6 +213,7 @@ var TT = TAOTAO = {
 				 html+= "</ul>";
 				 $("#"+formId+" .params td").eq(1).html(html);
 			  }else{
+			  	//如果响应里面没有规格模板，就不显示了
 				 $("#"+formId+" .params").hide();
 				 $("#"+formId+" .params td").eq(1).empty();
 			  }

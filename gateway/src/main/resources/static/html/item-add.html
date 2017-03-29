@@ -39,7 +39,7 @@
 	            <td>商品图片:</td>
 	            <td>
 	            	 <a href="javascript:void(0)" class="easyui-linkbutton picFileUpload">上传图片</a>
-	                 <input type="hidden" name="image"/>
+	                 <input id="image" type="hidden" name="image"/>
 	            </td>
 	        </tr>
 	        <tr>
@@ -70,8 +70,7 @@
 		itemAddEditor = TAOTAO.createEditor("#itemAddForm [name=desc]",TT.kingEditorParams);
 		//初始化类目选择和图片上传器
 		TAOTAO.init({fun:function(node){
-			//根据商品的分类id取商品 的规格模板，生成规格信息。第四天内容。
-			//TAOTAO.changeItemParam(node, "itemAddForm");
+			TAOTAO.changeItemParam(node, "itemAddForm");
 		}});
 	});
 	//提交表单
@@ -109,11 +108,10 @@
 		$("#itemAddForm [name=itemParams]").val(paramJson);
 		*/
 		//ajax的post方式提交表单
-		//$("#itemAddForm").serialize()将表单序列号为key-value形式的字符串
 		$.post("/item/save",$("#itemAddForm").serialize(), function(data){
 			if(data.status == 200){
 				$.messager.alert('提示',data.result);
-				clearForm();
+				window.location.href="/item-add";
 			} else {
 				$.messager.alert('提示','新增商品失败')
 			}
