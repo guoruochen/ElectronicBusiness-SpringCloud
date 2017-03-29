@@ -1,9 +1,6 @@
 package com.grc.item.mapper;
 
-import com.grc.item.domain.Item;
-import com.grc.item.domain.ItemCategory;
-import com.grc.item.domain.ItemDesc;
-import com.grc.item.domain.ItemParam;
+import com.grc.item.domain.*;
 import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;
@@ -25,6 +22,8 @@ public interface ItemMapper {
     void insertItem(Item item);
 
     void insertItemDesc(ItemDesc itemDesc);
+
+    void insertItemParamMsg(ItemParamMsg itemParamMsg);
 
     List<Map<String, Object>> getParamsPageable();
 

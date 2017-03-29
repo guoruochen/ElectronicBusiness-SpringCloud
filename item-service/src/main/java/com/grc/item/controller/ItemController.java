@@ -87,9 +87,9 @@ public class ItemController extends BaseController {
     新增商品
      */
     @RequestMapping(value = "/save", method = RequestMethod.POST)
-    public Map<String, Object> insertItem(Item item, String desc) {
+    public Map<String, Object> insertItem(Item item, String desc, String itemParams) {
         try {
-            Long id = itemService.insertItem(item, desc);
+            Long id = itemService.insertItem(item, desc, itemParams);
             return okResponse("商品 " + id + " 新增成功");
         } catch (Exception e) {
             return badResponse(e.getMessage());
@@ -136,7 +136,7 @@ public class ItemController extends BaseController {
             try {
                 Map<String, Object> map = new HashMap<>();
                 Map<String, Object> data = new HashMap<>();
-                data.put("paramData",itemService.getExistParam(catId));
+                data.put("paramData", itemService.getExistParam(catId));
                 map.put("status", 200);
                 map.put("data", data);
                 map.put("result", "该类目已有规格模板，不能重复添加！");
@@ -163,9 +163,4 @@ public class ItemController extends BaseController {
             return badResponse(e.getMessage());
         }
     }
-
-    /*
-    获取某类目的规格模板
-     */
-
 }

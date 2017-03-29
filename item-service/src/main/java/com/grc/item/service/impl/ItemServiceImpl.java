@@ -2,10 +2,7 @@ package com.grc.item.service.impl;
 
 import com.github.pagehelper.PageHelper;
 import com.grc.common.IDUtils;
-import com.grc.item.domain.Item;
-import com.grc.item.domain.ItemCategory;
-import com.grc.item.domain.ItemDesc;
-import com.grc.item.domain.ItemParam;
+import com.grc.item.domain.*;
 import com.grc.item.mapper.ItemMapper;
 import com.grc.item.service.ItemService;
 import org.apache.commons.io.FileUtils;
@@ -88,7 +85,7 @@ public class ItemServiceImpl implements ItemService {
     新增商品
      */
     @Override
-    public Long insertItem(Item item, String desc) {
+    public Long insertItem(Item item, String desc, String itemParams) {
         /*
         * 生成商品id
         * 不使用MySQL的自增主键
@@ -101,6 +98,11 @@ public class ItemServiceImpl implements ItemService {
         itemDesc.setItemId(id);
         itemDesc.setItemDesc(desc);
         itemMapper.insertItemDesc(itemDesc);
+        //创建商品规格参数信息对象
+        ItemParamMsg itemParamMsg = new ItemParamMsg();
+        itemParamMsg.setItemId(id);
+        itemParamMsg.setParamData(itemParams);
+        itemMapper.insertItemParamMsg(itemParamMsg);
         return id;
     }
 

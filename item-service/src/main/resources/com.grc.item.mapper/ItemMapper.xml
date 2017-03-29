@@ -37,6 +37,12 @@
         VALUES (#{itemId}, #{itemDesc},now(),now())
     </insert>
 
+    <!--  新增商品规格参数信息 -->
+    <insert id="insertItemParamMsg" parameterType="itemParamMsg">
+        INSERT INTO tb_item_param_item(item_id, param_data, created, updated )
+        VALUES (#{itemId}, #{paramData},now(),now())
+    </insert>
+
     <!-- 查询商品规格参数模板列表 -->
     <select id="getParamsPageable" resultType="java.util.Map">
         SELECT param.id , param.item_cat_id AS itemCatId , cat.name AS itemCatName,

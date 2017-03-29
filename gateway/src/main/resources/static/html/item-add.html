@@ -85,8 +85,8 @@
 		//同步文本框中的商品描述
 		itemAddEditor.sync();
 		//取商品的规格
-		/*
 		var paramJson = [];
+		//将规格参数信息转换为json
 		$("#itemAddForm .params li").each(function(i,e){
 			var trs = $(e).find("tr");
 			var group = trs.eq(0).text();
@@ -105,13 +105,12 @@
 		});
 		//把json对象转换成字符串
 		paramJson = JSON.stringify(paramJson);
+		//将规格参数信息写到表单的隐藏域中
 		$("#itemAddForm [name=itemParams]").val(paramJson);
-		*/
 		//ajax的post方式提交表单
 		$.post("/item/save",$("#itemAddForm").serialize(), function(data){
 			if(data.status == 200){
 				$.messager.alert('提示',data.result);
-				window.location.href="/item-add";
 			} else {
 				$.messager.alert('提示','新增商品失败')
 			}

@@ -23,7 +23,7 @@ public interface ItemService {
 
     String upload(MultipartFile uploadFile) throws IOException;
 
-    Long insertItem(Item item, String desc);
+    Long insertItem(Item item, String desc, String itemParams);
 
     List<Map<String, Object>> getParamsPageable(int page, int rows);
 
