@@ -4,6 +4,7 @@ import com.grc.common.BaseController;
 import com.grc.common.JsonUtils;
 import com.grc.item.domain.Item;
 import com.grc.item.domain.ItemCategory;
+import com.grc.item.domain.ItemParam;
 import com.grc.item.service.ItemService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -11,6 +12,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -123,4 +125,41 @@ public class ItemController extends BaseController {
             return badResponse(e.getMessage());
         }
     }
+
+    /*
+    判断选择的类目是否已经添加过规格模板
+     */
+    @RequestMapping(value = "/param/query/itemcatid/{catId}", method = RequestMethod.GET)
+    public Map<String, Object> queryItemCatId(@PathVariable Long catId) {
+        Long count = itemService.queryItemCatId(catId);
+        if (count != 0) {
+            try {
+                return okResponse("该类目已有规格模板，不能重复添加！");
+            } catch (Exception e) {
+                return badResponse(e.getMessage());
+            }
+        } else {
+            Map<String, Object> map = new HashMap<>();
+            map.put("code", 400);
+            return map;
+        }
+    }
+
+    /*
+    新增商品类目的规格模板
+     */
+    @RequestMapping(value = "/param/save", method = RequestMethod.POST)
+    public Map<String, Object> insertParam(ItemParam itemParam) {
+        try {
+            itemService.insertParam(itemParam);
+            return okResponse("类目 " + itemParam.getCid() + " 的规格模板添加成功！");
+        } catch (Exception e) {
+            return badResponse(e.getMessage());
+        }
+    }
+
+    /*
+    编辑商品类目的规格模板
+     */
+
 }

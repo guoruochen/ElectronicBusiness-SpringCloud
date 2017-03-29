@@ -49,4 +49,15 @@
     <select id="deleteParams" parameterType="java.lang.Long">
         DELETE FROM tb_item_param WHERE id = #{id}
     </select>
+
+    <!--  判断选择的类目是否已经添加过规格模板 -->
+    <select id="queryItemCatId" parameterType="java.lang.Long" resultType="java.lang.Long">
+        SELECT COUNT(*) FROM tb_item_param WHERE item_cat_id = #{catId}
+    </select>
+
+    <!--  新增商品类目的规格模板 -->
+    <insert id="insertParam" parameterType="itemParam">
+        INSERT INTO tb_item_param(item_cat_id, param_data, created, updated )
+        VALUES (#{cid}, #{paramData},now(),now())
+    </insert>
 </mapper>

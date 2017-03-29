@@ -2,6 +2,7 @@ package com.grc.item.service;
 
 import com.grc.item.domain.Item;
 import com.grc.item.domain.ItemCategory;
+import com.grc.item.domain.ItemParam;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
@@ -24,7 +25,11 @@ public interface ItemService {
 
     Long insertItem(Item item, String desc);
 
-    List<Map<String, Object>> getParamsPageable(int page,int rows);
+    List<Map<String, Object>> getParamsPageable(int page, int rows);
 
     void deleteParams(List<Long> ids);
+
+    Long queryItemCatId(Long catId);
+
+    void insertParam(ItemParam itemParam);
 }

@@ -131,6 +131,7 @@ var TT = TAOTAO = {
     			    				_ele.parent().find("[name=cid]").val(node.id);
     			    				_ele.next().text(node.text).attr("cid",node.id);
     			    				$(_win).window('close');
+									//如果传过来的参数不为空（参数为fun:function(node){}），回调function(node){}
     			    				if(data && data.fun){
     			    					data.fun.call(this,node);
     			    				}

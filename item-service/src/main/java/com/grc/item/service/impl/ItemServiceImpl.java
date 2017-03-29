@@ -5,6 +5,7 @@ import com.grc.common.IDUtils;
 import com.grc.item.domain.Item;
 import com.grc.item.domain.ItemCategory;
 import com.grc.item.domain.ItemDesc;
+import com.grc.item.domain.ItemParam;
 import com.grc.item.mapper.ItemMapper;
 import com.grc.item.service.ItemService;
 import org.apache.commons.io.FileUtils;
@@ -120,5 +121,22 @@ public class ItemServiceImpl implements ItemService {
         for (Long id : ids) {
             itemMapper.deleteParams(id);
         }
+    }
+
+    /*
+    判断选择的类目是否已经添加过规格模板
+     */
+    @Override
+    public Long queryItemCatId(Long catId) {
+        return itemMapper.queryItemCatId(catId);
+
+    }
+
+    /*
+    新增商品类目的规格模板
+     */
+    @Override
+    public void insertParam(ItemParam itemParam) {
+        itemMapper.insertParam(itemParam);
     }
 }

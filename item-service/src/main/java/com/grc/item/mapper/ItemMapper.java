@@ -3,6 +3,7 @@ package com.grc.item.mapper;
 import com.grc.item.domain.Item;
 import com.grc.item.domain.ItemCategory;
 import com.grc.item.domain.ItemDesc;
+import com.grc.item.domain.ItemParam;
 import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;
@@ -28,4 +29,8 @@ public interface ItemMapper {
     List<Map<String, Object>> getParamsPageable();
 
     void deleteParams(Long id);
+
+    Long queryItemCatId(Long catId);
+
+    void insertParam(ItemParam itemParam);
 }
