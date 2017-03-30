@@ -175,7 +175,7 @@ public class ItemController extends BaseController {
     }
 
     /*
-    获取商品的规格模板（根据商品id）
+    获取商品的规格参数信息
      */
     @RequestMapping(value = "/load/param/{itemId}", method = RequestMethod.GET)
     public Map<String, Object> loadItemParam(@PathVariable Long itemId) {
@@ -186,4 +186,6 @@ public class ItemController extends BaseController {
             return badResponse(e.getMessage());
         }
     }
+
+
 }

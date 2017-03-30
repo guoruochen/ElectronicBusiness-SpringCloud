@@ -66,7 +66,7 @@
         				}
         			});
         			
-        			//根据商品id取规格模板，如果本商品的类目有规格模板，就加载规格模板至新添加的<input>标签里面
+        			//获取商品的规格参数信息
         			$.getJSON('/item/load/param/'+data.id,function(_data){
         				if(_data && _data.status == 200 && _data.data && _data.data.paramData){
         					$("#itemeEditForm .params").show();

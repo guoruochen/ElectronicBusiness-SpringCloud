@@ -159,10 +159,10 @@ public class ItemServiceImpl implements ItemService {
     }
 
     /*
-    获取商品的规格模板（根据商品id）
+    获取商品的规格参数信息
      */
     @Override
     public ItemParam loadItemParam(Long itemId) {
-        return null;
+        return itemMapper.loadItemParam(itemId);
     }
 }

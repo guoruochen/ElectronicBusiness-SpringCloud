@@ -76,4 +76,11 @@
     <select id="loadItemDesc" parameterType="java.lang.Long" resultType="itemDesc">
         SELECT item_id AS itemId,item_desc AS itemDesc,created,updated FROM tb_item_desc WHERE item_id = #{itemId}
     </select>
+
+    <!--  获取商品的规格参数信息 -->
+    <select id="loadItemParam" parameterType="java.lang.Long" resultType="itemParam">
+        SELECT msg.id,msg.item_id AS itemId,msg.param_data AS paramData,msg.created,msg.updated
+        FROM tb_item_param_item msg
+        WHERE msg.item_id = #{itemId}
+    </select>
 </mapper>
