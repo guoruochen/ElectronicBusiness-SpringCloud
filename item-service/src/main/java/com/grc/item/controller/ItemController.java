@@ -4,6 +4,7 @@ import com.grc.common.BaseController;
 import com.grc.common.JsonUtils;
 import com.grc.item.domain.Item;
 import com.grc.item.domain.ItemCategory;
+import com.grc.item.domain.ItemDesc;
 import com.grc.item.domain.ItemParam;
 import com.grc.item.service.ItemService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -134,13 +135,9 @@ public class ItemController extends BaseController {
         Long count = itemService.queryItemCatId(catId);
         if (count != 0) {
             try {
-                Map<String, Object> map = new HashMap<>();
                 Map<String, Object> data = new HashMap<>();
                 data.put("paramData", itemService.getExistParam(catId));
-                map.put("status", 200);
-                map.put("data", data);
-                map.put("result", "该类目已有规格模板，不能重复添加！");
-                return map;
+                return okResponse(data);
             } catch (Exception e) {
                 return badResponse(e.getMessage());
             }
@@ -159,6 +156,32 @@ public class ItemController extends BaseController {
         try {
             itemService.insertParam(itemParam);
             return okResponse("规格模板添加成功！");
+        } catch (Exception e) {
+            return badResponse(e.getMessage());
+        }
+    }
+
+    /*
+    获取商品描述信息
+     */
+    @RequestMapping(value = "/load/desc/{itemId}", method = RequestMethod.GET)
+    public Map<String, Object> loadItemDesc(@PathVariable Long itemId) {
+        try {
+            ItemDesc data = itemService.loadItemDesc(itemId);
+            return okResponse(data);
+        } catch (Exception e) {
+            return badResponse(e.getMessage());
+        }
+    }
+
+    /*
+    获取商品的规格模板（根据商品id）
+     */
+    @RequestMapping(value = "/load/param/{itemId}", method = RequestMethod.GET)
+    public Map<String, Object> loadItemParam(@PathVariable Long itemId) {
+        try {
+            ItemParam data = itemService.loadItemParam(itemId);
+            return okResponse(data);
         } catch (Exception e) {
             return badResponse(e.getMessage());
         }

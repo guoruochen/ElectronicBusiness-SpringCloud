@@ -118,7 +118,7 @@
 		//serialize()用于将表单数据序列化为key=value形式的查询字符串
 		$.post("/item/save",$("#itemAddForm").serialize(), function(data){
 			if(data.status == 200){
-				$.messager.alert('提示',data.result,undefined,function(){
+				$.messager.alert('提示',data.data,undefined,function(){
 					reloadTab();
 				});
 			} else {

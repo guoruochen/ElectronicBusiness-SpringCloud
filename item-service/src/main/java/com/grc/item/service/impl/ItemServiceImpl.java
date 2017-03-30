@@ -149,4 +149,20 @@ public class ItemServiceImpl implements ItemService {
     public void insertParam(ItemParam itemParam) {
         itemMapper.insertParam(itemParam);
     }
+
+    /*
+    获取商品描述信息
+     */
+    @Override
+    public ItemDesc loadItemDesc(Long itemId) {
+        return itemMapper.loadItemDesc(itemId);
+    }
+
+    /*
+    获取商品的规格模板（根据商品id）
+     */
+    @Override
+    public ItemParam loadItemParam(Long itemId) {
+        return null;
+    }
 }

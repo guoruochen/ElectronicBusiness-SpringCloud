@@ -2,6 +2,7 @@ package com.grc.item.service;
 
 import com.grc.item.domain.Item;
 import com.grc.item.domain.ItemCategory;
+import com.grc.item.domain.ItemDesc;
 import com.grc.item.domain.ItemParam;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -34,4 +35,8 @@ public interface ItemService {
     String getExistParam(Long catId);
 
     void insertParam(ItemParam itemParam);
+
+    ItemDesc loadItemDesc(Long itemId);
+
+    ItemParam loadItemParam(Long itemId);
 }

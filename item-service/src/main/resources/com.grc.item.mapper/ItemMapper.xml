@@ -61,7 +61,7 @@
         SELECT COUNT(*) FROM tb_item_param WHERE item_cat_id = #{catId}
     </select>
 
-    <!--  获取规格模板 -->
+    <!--  获取规格模板（根据类目id） -->
     <select id="getExistParam" parameterType="java.lang.Long" resultType="java.lang.String">
         SELECT param_data AS paramData FROM tb_item_param WHERE item_cat_id = #{catId}
     </select>
@@ -71,4 +71,9 @@
         INSERT INTO tb_item_param(item_cat_id, param_data, created, updated )
         VALUES (#{cid}, #{paramData},now(),now())
     </insert>
+
+    <!--  获取商品描述信息 -->
+    <select id="loadItemDesc" parameterType="java.lang.Long" resultType="itemDesc">
+        SELECT item_id AS itemId,item_desc AS itemDesc,created,updated FROM tb_item_desc WHERE item_id = #{itemId}
+    </select>
 </mapper>

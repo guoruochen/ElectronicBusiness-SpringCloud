@@ -191,7 +191,7 @@ var TT = TAOTAO = {
     	$(".panel-tool-close").click();
     },
 
-	//根据商品类目id取规格模板
+	//根据商品类目id取规格模板，如果有规格模板，就加载规格模板至新添加的<input>标签里面
     changeItemParam : function(node,formId){
     	$.getJSON("/item/param/query/itemcatid/" + node.id,function(data){
 			  if(data.status == 200 && data.data){

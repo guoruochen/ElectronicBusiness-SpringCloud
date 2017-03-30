@@ -74,7 +74,7 @@
         	    	//发送ajax-post请求，删除选中的规格参数模板，请求参数为多个id
                 	$.post("/item/param/delete",params, function(data){
             			if(data.status == 200){
-            				$.messager.alert('提示',data.result,undefined,function(){
+            				$.messager.alert('提示',data.data,undefined,function(){
             					$("#itemParamList").datagrid("reload");
             				});
             			}

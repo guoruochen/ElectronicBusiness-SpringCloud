@@ -62,21 +62,19 @@
         			// 加载商品描述
         			$.getJSON('/item/load/desc/'+data.id,function(_data){
         				if(_data.status == 200){
-        					//UM.getEditor('itemeEditDescEditor').setContent(_data.data.itemDesc, false);
         					itemEditEditor.html(_data.data.itemDesc);
         				}
         			});
         			
-        			//加载商品规格
+        			//根据商品id取规格模板，如果本商品的类目有规格模板，就加载规格模板至新添加的<input>标签里面
         			$.getJSON('/item/load/param/'+data.id,function(_data){
         				if(_data && _data.status == 200 && _data.data && _data.data.paramData){
         					$("#itemeEditForm .params").show();
         					$("#itemeEditForm [name=itemParams]").val(_data.data.paramData);
         					$("#itemeEditForm [name=itemParamId]").val(_data.data.id);
-        					
         					//回显商品规格，将json字符串转换为json对象
         					 var paramData = JSON.parse(_data.data.paramData);
-        					
+                            //往表单里面拼了一些<input>
         					 var html = "<ul>";
         					 for(var i in paramData){
         						 var pd = paramData[i];

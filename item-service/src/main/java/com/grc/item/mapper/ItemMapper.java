@@ -34,4 +34,8 @@ public interface ItemMapper {
     String getExistParam(Long catId);
 
     void insertParam(ItemParam itemParam);
+
+    ItemDesc loadItemDesc(Long itemId);
+
+    ItemParam loadItemParam(Long itemId);
 }

@@ -49,7 +49,7 @@
                 $.getJSON("/item/param/query/itemcatid/" + node.id, function (data) {
                     if (data.status == 200) {
                         //如果添加过模板，弹框提示用户，并执行点击“选择类目”事件
-                        $.messager.alert("提示", data.result, undefined, function () {
+                        $.messager.alert("提示", '该类目已有规格模板，不能重复添加！', undefined, function () {
                             $("#itemParamAddTable .selectItemCat").click();
                         });
                         return;
@@ -109,7 +109,7 @@
             var param = {"paramData": JSON.stringify(params), "cid": $("#itemParamAddTable [name=cid]").val()};
             $.post(url, param, function (data) {
                 if (data.status == 200) {
-                    $.messager.alert('提示', data.result, undefined, function () {
+                    $.messager.alert('提示', data.data, undefined, function () {
                         $(".panel-tool-close").click();
                         $("#itemParamList").datagrid("reload");
                     });
