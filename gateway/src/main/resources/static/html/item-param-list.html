@@ -18,11 +18,14 @@
 
     //只显示规格组名称，并用逗号隔开
 	function formatItemParamData(value , index){
+	    //将规格模板转换为json对象
 		var json = JSON.parse(value);
 		var array = [];
+        //遍历json并将规格组的值加入进数组
 		$.each(json,function(i,e){
 			array.push(e.group);
 		});
+        //规格组值用逗号隔开
 		return array.join(",");
 	}
 
@@ -42,6 +45,7 @@
     var itemParamListToolbar = [{
         text:'新增',
         iconCls:'icon-add',
+        //点击新增按钮的事件处理函数
         handler:function(){
             //新开窗口，渲染item_param-add.html
         	TAOTAO.createWindow({
@@ -67,7 +71,7 @@
         	$.messager.confirm('确认','确定删除ID为 '+ids+' 的商品规格吗？',function(r){
         	    if (r){
         	    	var params = {"ids":ids};
-        	    	//发送ajax请求，删除选中的规格参数模板，请求参数为多个id
+        	    	//发送ajax-post请求，删除选中的规格参数模板，请求参数为多个id
                 	$.post("/item/param/delete",params, function(data){
             			if(data.status == 200){
             				$.messager.alert('提示',data.result,undefined,function(){

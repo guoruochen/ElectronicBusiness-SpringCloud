@@ -126,6 +126,7 @@ var TT = TAOTAO = {
     			    		url:'/item/cat/list',
     			    		animate:true,
     			    		onClick : function(node){
+    			    			//如果当前节点是叶子节点
     			    			if($(this).tree("isLeaf",node.target)){
     			    				// 填写到cid中
     			    				_ele.parent().find("[name=cid]").val(node.id);
@@ -195,8 +196,9 @@ var TT = TAOTAO = {
     	$.getJSON("/item/param/query/itemcatid/" + node.id,function(data){
 			  if(data.status == 200 && data.data){
 				 $("#"+formId+" .params").show();
-				  //将获取到的字符串转换为json
+				  //将获取到的json字符串转换为json对象
 				 var paramData = JSON.parse(data.data.paramData);
+				  //往表单里面拼了一些<input>
 				 var html = "<ul>";
 				 for(var i in paramData){
 					 var pd = paramData[i];

@@ -74,7 +74,7 @@
         					$("#itemeEditForm [name=itemParams]").val(_data.data.paramData);
         					$("#itemeEditForm [name=itemParamId]").val(_data.data.id);
         					
-        					//回显商品规格
+        					//回显商品规格，将json字符串转换为json对象
         					 var paramData = JSON.parse(_data.data.paramData);
         					
         					 var html = "<ul>";

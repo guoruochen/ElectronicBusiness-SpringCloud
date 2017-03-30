@@ -2,22 +2,26 @@
 <script type="text/javascript" charset="utf-8" src="/js/kindeditor-4.1.10/kindeditor-all-min.js"></script>
 <script type="text/javascript" charset="utf-8" src="/js/kindeditor-4.1.10/lang/zh_CN.js"></script>
 <div style="padding:10px 10px 10px 10px">
+	<!--  新增商品的表单，id为itemAddForm，提交方式为POST -->
 	<form id="itemAddForm" class="itemForm" method="post">
 	    <table cellpadding="5">
 	        <tr>
 	            <td>商品类目:</td>
 	            <td>
+					<!--  使用easyUI的linkbutton插件创建链接按钮 -->
+					<!--  javascript:void(0)表示什么都不做，这里就表示这个超链接不跳转到任何页面 -->
+					<!--  点击链接按钮会执行common.js中选择类目的方法 -->
 	            	<a href="javascript:void(0)" class="easyui-linkbutton selectItemCat">选择类目</a>
 	            	<input type="hidden" name="cid" style="width: 280px;"/>
 	            </td>
 	        </tr>
 	        <tr>
 	            <td>商品标题:</td>
-	            <td><input class="easyui-textbox" type="text" name="title" data-options="required:true" style="width: 280px;"></input></td>
+	            <td><input class="easyui-textbox" type="text" name="title" data-options="required:true" style="width: 280px;"/></td>
 	        </tr>
 	        <tr>
 	            <td>商品卖点:</td>
-	            <td><input class="easyui-textbox" name="sellPoint" data-options="multiline:true,validType:'length[0,150]'" style="height:60px;width: 280px;"></input></td>
+	            <td><input class="easyui-textbox" name="sellPoint" data-options="multiline:true,validType:'length[0,150]'" style="height:60px;width: 280px;"/></td>
 	        </tr>
 	        <tr>
 	            <td>商品价格:</td>
@@ -59,7 +63,7 @@
 	</form>
 	<div style="padding:5px">
 	    <a href="javascript:void(0)" class="easyui-linkbutton" onclick="submitForm()">提交</a>
-	    <a href="javascript:void(0)" class="easyui-linkbutton" onclick="clearForm()">重置</a>
+	    <a href="javascript:void(0)" class="easyui-linkbutton" onclick="reloadTab()">重置</a>
 	</div>
 </div>
 <script type="text/javascript">
@@ -70,6 +74,7 @@
 		itemAddEditor = TAOTAO.createEditor("#itemAddForm [name=desc]",TT.kingEditorParams);
 		//初始化类目选择和图片上传器
 		TAOTAO.init({fun:function(node){
+			//根据商品类目id取规格模板
 			TAOTAO.changeItemParam(node, "itemAddForm");
 		}});
 	});
@@ -84,9 +89,11 @@
 		$("#itemAddForm [name=price]").val(eval($("#itemAddForm [name=priceView]").val()) * 100);
 		//同步文本框中的商品描述
 		itemAddEditor.sync();
-		//取商品的规格
+		/*
+		取商品的规格
+		 */
 		var paramJson = [];
-		//将规格参数信息转换为json
+		//将规格参数信息转换为json对象
 		$("#itemAddForm .params li").each(function(i,e){
 			var trs = $(e).find("tr");
 			var group = trs.eq(0).text();
@@ -103,22 +110,33 @@
 				"params": ps
 			});
 		});
-		//把json对象转换成字符串
+		//再将json对象转换为json字符串
 		paramJson = JSON.stringify(paramJson);
-		//将规格参数信息写到表单的隐藏域中
+		//将json字符串赋值给itemParams（这是个隐藏的<input>）
 		$("#itemAddForm [name=itemParams]").val(paramJson);
-		//ajax的post方式提交表单
+		//ajax的post方式提交表单，将表单数据序列化为查询字符串
+		//serialize()用于将表单数据序列化为key=value形式的查询字符串
 		$.post("/item/save",$("#itemAddForm").serialize(), function(data){
 			if(data.status == 200){
-				$.messager.alert('提示',data.result);
+				$.messager.alert('提示',data.result,undefined,function(){
+					reloadTab();
+				});
 			} else {
 				$.messager.alert('提示','新增商品失败')
 			}
 		});
 	}
-	
-	function clearForm(){
-		$('#itemAddForm').form('reset');
-		itemAddEditor.html('');
+
+	//重载当前标签页
+	function reloadTab(){
+		//获取当前标签页
+		var current_tab = $('#tabs').tabs('getSelected');
+		//重载标签页
+		$('#tabs').tabs('update',{
+			tab:current_tab,
+			options:{
+				content:'<iframe scrolling="auto" frameborder="0"  src="item-add" style="width:100%;height:100%;"/>'
+			}
+		})
 	}
 </script>

@@ -1,4 +1,4 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!DOCTYPE html>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -16,12 +16,16 @@
 	}
 </style>
 </head>
+<!--  easyUI布局插件 -->
 <body class="easyui-layout">
+	<!--  布局的左侧是一个easyUI树插件，id为menu -->
+	<!--  树支持内置的异步加载模式，因此用户可以创建一个空的树，然后指定一个动态返回 JSON 数据的接口，用于根据需求异步填充树 -->
     <div data-options="region:'west',title:'菜单',split:true" style="width:180px;">
     	<ul id="menu" class="easyui-tree" style="margin-top: 10px;margin-left: 5px;">
          	<li>
          		<span>商品管理</span>
          		<ul>
+					<!--  树节点的自定义属性 -->
 	         		<li data-options="attributes:{'url':'item-add'}">新增商品</li>
 	         		<li data-options="attributes:{'url':'item-list'}">查询商品</li>
 	         		<li data-options="attributes:{'url':'item-param-list'}">规格参数</li>
@@ -36,6 +40,8 @@
          	</li>
          </ul>
     </div>
+	<!--  布局的中间是一个easyUI的标签页插件，id为tabs -->
+	<!--  每个标签页通过子 <div> 被创建 -->
     <div data-options="region:'center',title:''">
     	<div id="tabs" class="easyui-tabs">
 		    <div title="首页" style="padding:20px;">
@@ -46,14 +52,19 @@
     
 <script type="text/javascript">
 $(function(){
+	//给树的节点添加点击事件
 	$('#menu').tree({
 		onClick: function(node){
+			//如果选中的节点是叶子节点
 			if($('#menu').tree("isLeaf",node.target)){
+				//根据节点名查找标签页
 				var tabs = $("#tabs");
 				var tab = tabs.tabs("getTab",node.text);
 				if(tab){
+					//如果能够查找到标签页，就选中它
 					tabs.tabs("select",node.text);
 				}else{
+					//如果标签页不存在，就新建一个，标签页的title为节点名，根据自定义属性的url发送异步请求（获取html渲染标签页）
 					tabs.tabs('add',{
 					    title:node.text,
 					    href: node.attributes.url,
