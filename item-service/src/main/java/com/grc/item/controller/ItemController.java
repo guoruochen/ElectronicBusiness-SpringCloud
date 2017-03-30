@@ -187,5 +187,21 @@ public class ItemController extends BaseController {
         }
     }
 
-
+    /*
+    删除商品
+    */
+    @RequestMapping(value = "/delete", method = RequestMethod.POST)
+    public Map<String, Object> deleteItems(String ids) {
+        List<Long> idList = new ArrayList<>();
+        String[] idArray = ids.split(",");
+        for (String s : idArray) {
+            idList.add(Long.parseLong(s));
+        }
+        try {
+            itemService.deleteItems(idList);
+            return okResponse("删除成功");
+        } catch (Exception e) {
+            return badResponse(e.getMessage());
+        }
+    }
 }

@@ -39,4 +39,6 @@ public interface ItemService {
     ItemDesc loadItemDesc(Long itemId);
 
     ItemParam loadItemParam(Long itemId);
+
+    void deleteItems(List<Long> ids);
 }

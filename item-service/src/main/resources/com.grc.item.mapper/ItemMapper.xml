@@ -52,9 +52,9 @@
     </select>
 
     <!--  删除规格参数模板 -->
-    <select id="deleteParams" parameterType="java.lang.Long">
+    <delete id="deleteParams" parameterType="java.lang.Long">
         DELETE FROM tb_item_param WHERE id = #{id}
-    </select>
+    </delete>
 
     <!--  判断选择的类目是否已经添加过规格模板 -->
     <select id="queryItemCatId" parameterType="java.lang.Long" resultType="java.lang.Long">
@@ -83,4 +83,19 @@
         FROM tb_item_param_item msg
         WHERE msg.item_id = #{itemId}
     </select>
+
+    <!--  删除商品信息 -->
+    <delete id="deleteItem" parameterType="java.lang.Long">
+        DELETE FROM tb_item WHERE id = #{itemId}
+    </delete>
+
+    <!--  删除商品描述信息 -->
+    <delete id="deleteItemDesc" parameterType="java.lang.Long">
+        DELETE FROM tb_item_desc WHERE item_id = #{itemId}
+    </delete>
+
+    <!--  删除商品规格参数信息 -->
+    <delete id="deleteItemParamMsg" parameterType="java.lang.Long">
+        DELETE FROM tb_item_param_item WHERE item_id = #{itemId}
+    </delete>
 </mapper>

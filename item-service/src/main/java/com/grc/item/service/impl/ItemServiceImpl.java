@@ -10,6 +10,7 @@ import org.apache.commons.lang.time.DateFormatUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.File;
@@ -23,6 +24,7 @@ import java.util.Map;
  * @create 2017-03-01 16:12
  */
 @Service
+@Transactional
 public class ItemServiceImpl implements ItemService {
 
     @Autowired
@@ -164,5 +166,17 @@ public class ItemServiceImpl implements ItemService {
     @Override
     public ItemParam loadItemParam(Long itemId) {
         return itemMapper.loadItemParam(itemId);
+    }
+
+    /*
+    删除商品
+    */
+    @Override
+    public void deleteItems(List<Long> ids) {
+        for (Long id : ids) {
+            itemMapper.deleteItem(id);
+            itemMapper.deleteItemDesc(id);
+            itemMapper.deleteItemParamMsg(id);
+        }
     }
 }

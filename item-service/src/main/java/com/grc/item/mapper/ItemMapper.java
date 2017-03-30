@@ -38,4 +38,10 @@ public interface ItemMapper {
     ItemDesc loadItemDesc(Long itemId);
 
     ItemParam loadItemParam(Long itemId);
+
+    void deleteItem(Long itemId);
+
+    void deleteItemDesc(Long itemId);
+
+    void deleteItemParamMsg(Long itemId);
 }
