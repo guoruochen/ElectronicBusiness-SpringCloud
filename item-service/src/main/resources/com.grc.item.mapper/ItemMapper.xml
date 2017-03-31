@@ -98,4 +98,37 @@
     <delete id="deleteItemParamMsg" parameterType="java.lang.Long">
         DELETE FROM tb_item_param_item WHERE item_id = #{itemId}
     </delete>
+
+    <!--  下架商品 -->
+    <update id="instockItem" parameterType="java.lang.Long">
+        UPDATE tb_item SET status=2 WHERE id=#{id}
+    </update>
+
+    <!--  上架商品 -->
+    <update id="reshelfItem" parameterType="java.lang.Long">
+        UPDATE tb_item SET status=1 WHERE id=#{id}
+    </update>
+
+    <!--  更新商品信息 -->
+    <update id="updateItem" parameterType="item">
+        UPDATE tb_item
+        SET title = #{title},sell_point = #{sellPoint},price = #{price},
+        num = #{num},barcode = #{barcode},image = #{image},cid = #{cid},
+        updated = now()
+        WHERE id = #{id}
+    </update>
+
+    <!--  更新商品描述信息 -->
+    <update id="updateItemDesc" parameterType="itemDesc">
+        UPDATE tb_item_desc
+        SET item_desc = #{itemDesc},updated = now()
+        WHERE item_id = #{itemId}
+    </update>
+
+    <!--  更新商品规格信息 -->
+    <update id="updateItemParamMsg" parameterType="itemParamMsg">
+        UPDATE tb_item_param_item
+        SET param_data = #{paramData},updated = now()
+        WHERE id = #{id}
+    </update>
 </mapper>

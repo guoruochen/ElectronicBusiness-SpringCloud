@@ -90,7 +90,7 @@ var contentListToolbar = [{
     		$.messager.alert('提示','未选中商品!');
     		return ;
     	}
-    	$.messager.confirm('确认','确定删除ID为 '+ids+' 的内容吗？',function(r){
+    	$.messager.confirm('确认','确定删除选中内容吗？',function(r){
     	    if (r){
     	    	var params = {"ids":ids};
             	$.post("/content/delete",params, function(data){

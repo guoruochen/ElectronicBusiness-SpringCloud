@@ -44,4 +44,14 @@ public interface ItemMapper {
     void deleteItemDesc(Long itemId);
 
     void deleteItemParamMsg(Long itemId);
+
+    void instockItem(Long id);
+
+    void reshelfItem(Long id);
+
+    void updateItem(Item item);
+
+    void updateItemDesc(ItemDesc itemDesc);
+
+    void updateItemParamMsg(ItemParamMsg itemParamMsg);
 }

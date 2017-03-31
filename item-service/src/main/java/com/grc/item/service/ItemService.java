@@ -41,4 +41,10 @@ public interface ItemService {
     ItemParam loadItemParam(Long itemId);
 
     void deleteItems(List<Long> ids);
+
+    void instockItem(List<Long> ids);
+
+    void reshelfItem(List<Long> ids);
+
+    void updateItem(Item item, String desc, Long itemParamId, String itemParams);
 }

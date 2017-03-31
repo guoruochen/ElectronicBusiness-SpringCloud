@@ -204,4 +204,53 @@ public class ItemController extends BaseController {
             return badResponse(e.getMessage());
         }
     }
+
+    /*
+    下架商品
+     */
+    @RequestMapping(value = "/instock", method = RequestMethod.POST)
+    public Map<String, Object> instockItem(String ids) {
+        List<Long> idList = new ArrayList<>();
+        String[] idArray = ids.split(",");
+        for (String s : idArray) {
+            idList.add(Long.parseLong(s));
+        }
+        try {
+            itemService.instockItem(idList);
+            return okResponse("下架成功！");
+        } catch (Exception e) {
+            return badResponse(e.getMessage());
+        }
+    }
+
+    /*
+    上架商品
+     */
+    @RequestMapping(value = "/reshelf", method = RequestMethod.POST)
+    public Map<String, Object> reshelfItem(String ids) {
+        List<Long> idList = new ArrayList<>();
+        String[] idArray = ids.split(",");
+        for (String s : idArray) {
+            idList.add(Long.parseLong(s));
+        }
+        try {
+            itemService.reshelfItem(idList);
+            return okResponse("上架成功！");
+        } catch (Exception e) {
+            return badResponse(e.getMessage());
+        }
+    }
+
+    /*
+    编辑商品
+     */
+    @RequestMapping(value = "/update", method = RequestMethod.POST)
+    public Map<String, Object> updateItem(Item item, String desc, Long itemParamId, String itemParams) {
+        try {
+            itemService.updateItem(item, desc, itemParamId, itemParams);
+            return okResponse("商品" + item.getId() + "编辑成功！");
+        } catch (Exception e) {
+            return badResponse(e.getMessage());
+        }
+    }
 }

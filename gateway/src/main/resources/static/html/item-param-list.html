@@ -68,7 +68,7 @@
         		$.messager.alert('提示','未选中商品规格!');
         		return ;
         	}
-        	$.messager.confirm('确认','确定删除ID为 '+ids+' 的商品规格吗？',function(r){
+        	$.messager.confirm('确认','确定删除选中商品规格吗？',function(r){
         	    if (r){
         	    	var params = {"ids":ids};
         	    	//发送ajax-post请求，删除选中的规格参数模板，请求参数为多个id

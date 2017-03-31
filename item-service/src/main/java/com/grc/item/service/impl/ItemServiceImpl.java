@@ -179,4 +179,42 @@ public class ItemServiceImpl implements ItemService {
             itemMapper.deleteItemParamMsg(id);
         }
     }
+
+    /*
+    下架商品
+     */
+    @Override
+    public void instockItem(List<Long> ids) {
+        for (Long id : ids) {
+            itemMapper.instockItem(id);
+        }
+    }
+
+    /*
+    上架商品
+     */
+    @Override
+    public void reshelfItem(List<Long> ids) {
+        for (Long id : ids) {
+            itemMapper.reshelfItem(id);
+        }
+    }
+
+    /*
+    编辑商品
+     */
+    @Override
+    public void updateItem(Item item, String desc, Long itemParamId, String itemParams) {
+        itemMapper.updateItem(item);
+        //创建商品描述对象
+        ItemDesc itemDesc = new ItemDesc();
+        itemDesc.setItemId(item.getId());
+        itemDesc.setItemDesc(desc);
+        itemMapper.updateItemDesc(itemDesc);
+        //创建商品规格参数信息对象
+        ItemParamMsg itemParamMsg = new ItemParamMsg();
+        itemParamMsg.setId(itemParamId);
+        itemParamMsg.setParamData(itemParams);
+        itemMapper.updateItemParamMsg(itemParamMsg);
+    }
 }
