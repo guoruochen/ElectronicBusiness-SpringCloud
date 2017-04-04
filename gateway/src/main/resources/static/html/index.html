@@ -1,7 +1,9 @@
 <!DOCTYPE html>
 <html>
+<!--  注意：只有这个页面是一个完整的HTML页面，其他页面都是属于本页面的一部分 -->
+<!--  所以，在这里导入的css和js文件可以被其它页面所共享，不用重复导入！-->
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset=UTF-8">
 <title>K-商城后台管理系统</title>
 <link rel="stylesheet" type="text/css" href="js/jquery-easyui-1.4.1/themes/default/easyui.css" />
 <link rel="stylesheet" type="text/css" href="js/jquery-easyui-1.4.1/themes/icon.css" />
@@ -41,7 +43,7 @@
          </ul>
     </div>
 	<!--  布局的中间是一个easyUI的标签页插件，id为tabs -->
-	<!--  每个标签页通过子 <div> 被创建 -->
+	<!--  每个标签页通过标签页插件的子 <div> 被创建 -->
     <div data-options="region:'center',title:''">
     	<div id="tabs" class="easyui-tabs">
 		    <div title="首页" style="padding:20px;">
@@ -52,7 +54,7 @@
     
 <script type="text/javascript">
 $(function(){
-	//给树的节点添加点击事件
+	//给树添加点击事件
 	$('#menu').tree({
 		onClick: function(node){
 			//如果选中的节点是叶子节点
