@@ -7,6 +7,8 @@
     <artifactId>shop</artifactId>
     <version>1.0-SNAPSHOT</version>
     <packaging>pom</packaging>
+    <name>backend</name>
+    <description>K-商城后台管理系统</description>
 
     <!--  聚合，用来集中管理各模块（注意这不叫继承！！） -->
     <modules>
