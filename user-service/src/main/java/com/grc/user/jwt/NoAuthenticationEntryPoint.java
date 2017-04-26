@@ -27,7 +27,7 @@ public class NoAuthenticationEntryPoint implements AuthenticationEntryPoint {
 
         RestResp restResp = new RestResp(RestResp.NO_SESSION, "没有登录或登录已过期!");
 
-        response.getWriter().println(JsonUtils.objectToJson(restResp));
+        response.getWriter().println(JsonUtils.toJsonString(restResp));
         response.getWriter().flush();
     }
 }
