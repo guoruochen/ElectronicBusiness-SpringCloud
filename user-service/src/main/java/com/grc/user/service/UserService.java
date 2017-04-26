@@ -10,5 +10,5 @@ import java.util.Map;
  * @create 2017-02-28 15:12
  */
 public interface UserService {
-    List<User> test();
+    User login(User user);
 }

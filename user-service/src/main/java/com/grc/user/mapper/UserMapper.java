@@ -13,5 +13,5 @@ import java.util.Map;
 @Mapper
 public interface UserMapper {
 
-    List<User> test();
+    User login(User user);
 }
