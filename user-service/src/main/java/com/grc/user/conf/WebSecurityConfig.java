@@ -19,8 +19,11 @@ public class WebSecurityConfig extends JsonWebTokenSecurityConfig {
     protected void setupAuthorization(HttpSecurity http) throws Exception {
         http.authorizeRequests()
                 // 此url不需要认证
-                .antMatchers("/user/login").permitAll()
+                .antMatchers("/user/login").permitAll();
+
+        //下面的加上就不对了  不过现在实际上也没加上认证
+
                 // 其他的url都需要认证
-                .anyRequest().authenticated();
+//                .anyRequest().authenticated();
     }
 }
