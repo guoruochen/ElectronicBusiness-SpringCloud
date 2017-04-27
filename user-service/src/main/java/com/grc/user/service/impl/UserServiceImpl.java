@@ -19,7 +19,7 @@ import java.util.Map;
 public class UserServiceImpl implements UserService{
 
     @Autowired
-    UserMapper userMapper;
+    private UserMapper userMapper;
 
     @Override
     public User login(User user) {

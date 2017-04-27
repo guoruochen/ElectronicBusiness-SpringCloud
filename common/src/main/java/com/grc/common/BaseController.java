@@ -21,13 +21,34 @@ public class BaseController {
     static final String RESPONSE_KEY_URL = "url";
     static final String RESPONSE_KEY_ERROR = "error";
     static final String RESPONSE_KEY_DATA = "data";
+    static final String RESPONSE_KEY_JWT = "jwt";
+
+    /*
+    登录成功的响应格式
+     */
+    public Map<String, Object> loginOkResp(Object o) {
+        Map<String, Object> jsonMap = new HashMap<String, Object>();
+        jsonMap.put(RESPONSE_KEY_STATUS, 200);
+        jsonMap.put(RESPONSE_KEY_JWT, o);
+        return jsonMap;
+    }
+
+    /*
+    登录失败的响应格式
+     */
+    public Map<String, Object> loginBadResp(Object o) {
+        Map<String, Object> jsonMap = new HashMap<String, Object>();
+        jsonMap.put(RESPONSE_KEY_STATUS, 201);
+        jsonMap.put(RESPONSE_KEY_MESSAGE, o);
+        return jsonMap;
+    }
 
     /*
     请求成功的响应格式
      */
     public Map<String, Object> okResponse(Object o) {
         Map<String, Object> jsonMap = new HashMap<String, Object>();
-        jsonMap.put(RESPONSE_KEY_STATUS,200);
+        jsonMap.put(RESPONSE_KEY_STATUS, 200);
         jsonMap.put(RESPONSE_KEY_DATA, o);
         return jsonMap;
     }
@@ -37,7 +58,7 @@ public class BaseController {
      */
     public Map<String, Object> badResponse(Object o) {
         Map<String, Object> jsonMap = new HashMap<String, Object>();
-        jsonMap.put(RESPONSE_KEY_STATUS,500);
+        jsonMap.put(RESPONSE_KEY_STATUS, 500);
         jsonMap.put(RESPONSE_KEY_MESSAGE, o);
         return jsonMap;
     }
@@ -66,9 +87,9 @@ public class BaseController {
     /*
     用来生成符合KindEditor文件上传插件-上传成功-的响应
      */
-    public Map<String,Object> KESuccess(String url){
+    public Map<String, Object> KESuccess(String url) {
         Map<String, Object> jsonMap = new HashMap<String, Object>();
-        jsonMap.put(RESPONSE_KEY_ERROR , 0);
+        jsonMap.put(RESPONSE_KEY_ERROR, 0);
         jsonMap.put(RESPONSE_KEY_URL, url);
         return jsonMap;
     }
@@ -76,9 +97,9 @@ public class BaseController {
     /*
     用来生成符合KindEditor文件上传插件-上传失败-的响应
      */
-    public Map<String,Object> KEFail(Object o){
+    public Map<String, Object> KEFail(Object o) {
         Map<String, Object> jsonMap = new HashMap<String, Object>();
-        jsonMap.put(RESPONSE_KEY_ERROR , 1);
+        jsonMap.put(RESPONSE_KEY_ERROR, 1);
         jsonMap.put(RESPONSE_KEY_MESSAGE, o);
         return jsonMap;
     }
