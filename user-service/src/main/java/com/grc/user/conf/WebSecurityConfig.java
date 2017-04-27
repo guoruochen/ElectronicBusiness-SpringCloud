@@ -18,12 +18,9 @@ public class WebSecurityConfig extends JsonWebTokenSecurityConfig {
     @Override
     protected void setupAuthorization(HttpSecurity http) throws Exception {
         http.authorizeRequests()
-                // allow anonymous access to /user/login endpoint
+                // 此url不需要认证
                 .antMatchers("/user/login").permitAll()
-                .antMatchers("/swagger/**").permitAll()
-
-
-                // authenticate all other requests
+                // 其他的url都需要认证
                 .anyRequest().authenticated();
     }
 }

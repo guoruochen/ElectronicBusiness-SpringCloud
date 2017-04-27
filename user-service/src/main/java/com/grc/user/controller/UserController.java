@@ -5,11 +5,9 @@ import com.grc.user.domain.User;
 import com.grc.user.jwt.AuthTokenDetails;
 import com.grc.user.jwt.JsonWebTokenUtility;
 import com.grc.user.service.UserService;
+import org.omg.CORBA.Request;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.Calendar;
 import java.util.Date;
@@ -51,5 +49,14 @@ public class UserController extends BaseController {
         Calendar calendar = Calendar.getInstance();
         calendar.add(Calendar.HOUR_OF_DAY, 1);
         return calendar.getTime();
+    }
+
+    @RequestMapping(value = "/{userId}", method = RequestMethod.GET)
+    public Map<String, Object> getUserById(@PathVariable Long userId) {
+        try {
+            return okResponse(userService.getUserById(userId));
+        } catch (Exception e) {
+            return badResponse(e.getMessage());
+        }
     }
 }

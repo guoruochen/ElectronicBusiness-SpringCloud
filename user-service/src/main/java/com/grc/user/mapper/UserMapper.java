@@ -14,4 +14,6 @@ import java.util.Map;
 public interface UserMapper {
 
     User login(User user);
+
+    User getUserById(Long userId);
 }

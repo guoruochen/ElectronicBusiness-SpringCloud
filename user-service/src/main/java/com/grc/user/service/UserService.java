@@ -11,4 +11,6 @@ import java.util.Map;
  */
 public interface UserService {
     User login(User user);
+
+    User getUserById(Long userId);
 }

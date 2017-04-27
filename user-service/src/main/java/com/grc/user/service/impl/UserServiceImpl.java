@@ -16,7 +16,7 @@ import java.util.Map;
  */
 @Service
 @Transactional
-public class UserServiceImpl implements UserService{
+public class UserServiceImpl implements UserService {
 
     @Autowired
     private UserMapper userMapper;
@@ -25,5 +25,10 @@ public class UserServiceImpl implements UserService{
     public User login(User user) {
         user = userMapper.login(user);
         return user;
+    }
+
+    @Override
+    public User getUserById(Long userId) {
+        return userMapper.getUserById(userId);
     }
 }

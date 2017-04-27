@@ -8,4 +8,9 @@
         FROM tb_user
         WHERE username = #{username} AND password = #{password}
     </select>
+
+    <!--  查询单个用户 -->
+    <select id="getUserById" parameterType="java.lang.Long" resultType="user">
+        SELECT * FROM tb_user
+    </select>
 </mapper>
